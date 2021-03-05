@@ -1,4 +1,7 @@
-import difflib
+import random
+import json
+
+
 def test_task1():
     number_list = [1, 0, -52, 3, 5, -8, 13, 21, 34, -55, 89]
     for item in number_list:
@@ -37,7 +40,7 @@ def test_task5():
     print(a)
 
 def test_task6():
-    string = "Automation sometimes helps project and sometimes does not."
+    string = "Automation sometimes helps helps helps project help hel and sometimes does not."
     l=string.split()
     c=[]
     x=[]
@@ -89,4 +92,47 @@ def test_task10():
     for g in x:
         position = val_list.index(g)
         print(key_list[position])
+#ортировка элементов от большего к меньшему
 
+#Homework 2
+
+def test_tasks1():
+    a_file = open("testtext.txt", "r").readlines()
+    list_of_lines = a_file
+    n = random.randint(1, len(list_of_lines))
+    list_of_lines[n] = "Hello\n"
+    a_file = open("testtext.txt", "w")
+    a_file.writelines(list_of_lines)
+    print(list_of_lines)
+    k = random.randint(1, len(list_of_lines))
+    del list_of_lines[k]
+    print(list_of_lines)
+    a_file.close()
+
+def test_tasks2():
+    a_file = open("testtext.txt", "r").readlines()
+    lists = list(reversed(a_file))
+    print(a_file)
+    a_file = open("testtext.txt", "w")
+    for i in lists:
+        a_file.writelines(i)
+    print(lists)
+
+def test_tasks3():
+    a_file = open("file1.txt", "r").read()
+    a_file1 = open("file2.txt", "r").read()
+    a_file += a_file1
+    a_file2 = open("file3.txt", "w").write(a_file)
+
+def test_tasks4():
+        with open("response.json", 'r') as f:
+            contents = json.load(f)
+            mas = {}
+            masiv = {}
+            for i in contents['data']:
+                 mas.update({i['id']:i['title']})
+                 masiv.update({i['id']:i['urls']})
+        with open("videos_id_name", "w") as file1:
+            json.dump(mas, file1)
+        with open("videos_id_urls", "w") as file2:
+            json.dump(masiv, file2)
